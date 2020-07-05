@@ -1,0 +1,12 @@
+.search-container{
+    margin: 50px;
+}
+
+.ui.input>input{
+    width: 300px;
+
+}
+
+.category-box{
+    width: 170px;
+}
