@@ -35,12 +35,33 @@ class ComplexSearch extends Component {
         super(props);
 
         this.state = {
-            startPrice: null,
-            endPrice: null,
+            startPrice: '',
+            endPrice: '',
             color: null,
             brand: null
         };
     }
+    isUpTo2Decimal(n) {
+        const upTo2DecimalRegex = /^\d+(\.\d{0,2})?$/;
+        return upTo2DecimalRegex.test(n);
+    }
+
+    startPriceOnChange(value) {
+        const isLegal = value === '' || this.isUpTo2Decimal(value);
+        if (isLegal) {
+            this.setState({ startPrice: value });
+            this.updateAdvancedData({ startPrice: value });
+        }
+
+    };
+    endPriceOnChange(value) {
+        const isLegal = value === '' || this.isUpTo2Decimal(value);
+        if (isLegal) {
+            this.setState({ endPrice: value });
+            this.updateAdvancedData({ endPrice: value });
+        }
+    };
+
     updateAdvancedData(changedData) {
         this.props.updateAdvancedData(changedData);
     }
@@ -55,10 +76,9 @@ class ComplexSearch extends Component {
                             control={Input}
                             label='Form'
                             placeholder='price'
+                            value={this.state.startPrice}
                             onChange={(e, { value }) => {
-                                console.log(value);
-                                this.setState({ startPrice: value });
-                                this.updateAdvancedData({ startPrice: value });
+                                this.startPriceOnChange(value);
                             }}
                         />
                         <Form.Field
@@ -66,9 +86,9 @@ class ComplexSearch extends Component {
                             control={Input}
                             label='To'
                             placeholder='price'
+                            value={this.state.endPrice}
                             onChange={(e, { value }) => {
-                                this.setState({ endPrice: value });
-                                this.updateAdvancedData({ endPrice: value });
+                                this.endPriceOnChange(value);
                             }}
                         />
                         <Form.Field
@@ -78,7 +98,6 @@ class ComplexSearch extends Component {
                             options={colorOptions}
                             placeholder='Select color'
                             onChange={(e, { value }) => {
-                                console.log(e);
                                 this.setState({ color: value });
                                 this.updateAdvancedData({ color: value });
                             }}
