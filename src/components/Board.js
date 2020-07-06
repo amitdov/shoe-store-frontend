@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Card, Loader, Dimmer, Segment, Icon } from "semantic-ui-react";
+import { Card, Loader, Dimmer, Segment, Icon, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import ShoesCard from './ShoesCard';
-import _, { fromPairs } from "lodash";
+
+import { getNextPage } from "../actions/index";
+import _ from "lodash";
 class Board extends React.Component {
 
 	render() {
@@ -20,18 +22,26 @@ class Board extends React.Component {
 
 		} else {
 			return (
-				<Card.Group centered stackable>
-					{this.renderCards()}
-				</Card.Group>
+				<div>
+					<Card.Group centered stackable>
+						{this.renderCards()}
+					</Card.Group>
+					{!_.isEmpty(this.props.searchResults.nextPage) &&
+						<Button onClick={() =>
+							this.props.getNextPage()
+						} > Next </Button>
+					}
+				</div>
+
 			);
 		}
 
 	}
+
 	renderCards() {
 
-		if (!_.isEmpty(this.props.searchResults)) {
-			console.log(this.props.searchResults);
-			return this.props.searchResults.map(
+		if (!_.isEmpty(this.props.searchResults.shoesList)) {
+			return this.props.searchResults.shoesList.map(
 				(
 					item,
 					index
@@ -55,5 +65,5 @@ const mapStateToProps = ({ searchResults }) => {
 };
 
 export default
-	connect(mapStateToProps)
+	connect(mapStateToProps, { getNextPage })
 		(Board);
