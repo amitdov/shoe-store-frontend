@@ -8,7 +8,6 @@ export const sendSearch = (queryText, category) => async (dispatch, getState) =>
         payload: {
             isInSearch: true
         }
-
     });
     const query = {
         query: "query{\n" +
@@ -30,26 +29,7 @@ export const sendSearch = (queryText, category) => async (dispatch, getState) =>
 
     }
     const response = await server().post("graphql", query,);
-    // if (response.status === 200) {
-    //     if (response.data.err && response.data.err.message) {
-    //         dispatch({
-    //             type: VALIDATE_QUERY_STATUS,
-    //             payload: {
-    //                 type: "error",
-    //                 isValid: false,
-    //                 message: response.data.err.message,
-    //             },
-    //         });
-    //     } else if (response.data[0] && response.data[0].message) {
-    //         dispatch({
-    //             type: VALIDATE_QUERY_STATUS,
-    //             payload: {
-    //                 type: "error",
-    //                 isValid: false,
-    //                 message: response.data[0].message,
-    //             },
-    //         });
-    //     } else {
+
     const result = response.data.data.searchShoes;
     if (result == null) {
         dispatch({
@@ -75,11 +55,12 @@ export const sendSearch = (queryText, category) => async (dispatch, getState) =>
     }
 }
 
-
-// export const clearServerStatus = () => (dispatch) => {
-//   dispatch({ type: SERVER_STATUS, payload: {} });
-//   dispatch({ type: VALIDATE_QUERY_STATUS, payload: {} });
-// };
-export const HANDLE_VIEW_OPEN = 'HANDLE_VIEW_OPEN';
-export const SERVER_STATUS = "SERVER_STATUS";
+export const changeAdvencedMode = () => (dispatch, getState) => {
+    dispatch({
+        type: ADVENCED_MODE,
+        payload: _.isEmpty(getState().advencedMode) ? { isAdvenced: true } :
+            { isAdvenced: !getState().advencedMode.isAdvenced }
+    });
+}
+export const ADVENCED_MODE = 'ADVENCED_MODE';
 export const SEARCH_RESULTS = "SEARCH_RESULTS";

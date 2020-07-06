@@ -8,7 +8,7 @@ import {
 } from "semantic-ui-react";
 
 import { connect } from 'react-redux';
-import { sendSearch } from "../actions/index";
+import { sendSearch, changeAdvencedMode } from "../actions/index";
 import _ from "lodash";
 import "../styles/search.css";
 
@@ -76,22 +76,31 @@ class SearchComponent extends Component {
                         }
                     />
                     <Button type='submit' onClick={() =>
-                        this.RequestSearch()
-                    }>Search</Button>
+                        this.requestSearch()
+                    }
+                    >Search</Button>
                 </Input>
+                <a as='Button'
+                    style={{ margin: "5px" }}
+                    onClick={() => this.openAdvencedMode()}>
+                    Advenced
+                </a>
             </div>
         );
     }
-    RequestSearch() {
+    requestSearch() {
         this.props.sendSearch(
             this.state.searchQuery,
             this.state.searchCategory
         );
+    }
+    openAdvencedMode() {
+        this.props.changeAdvencedMode();
     }
 }
 const categories = {
 }
 export default connect(
     null,
-    { sendSearch }
+    { sendSearch, changeAdvencedMode }
 )(SearchComponent);
