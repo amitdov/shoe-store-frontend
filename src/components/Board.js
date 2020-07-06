@@ -27,9 +27,15 @@ class Board extends React.Component {
 						{this.renderCards()}
 					</Card.Group>
 					{!_.isEmpty(this.props.searchResults.nextPage) &&
-						<Button onClick={() =>
-							this.props.getNextPage()
-						} > Next </Button>
+						<div style={{
+							textAlign: "center",
+							margin: 10
+						}}>
+							<Button onClick={() =>
+								this.props.getNextPage()
+							} > Next
+						</Button>
+						</div>
 					}
 				</div>
 
