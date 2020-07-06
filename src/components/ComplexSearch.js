@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Form, Input, Select, Button, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { updateAdvancedData } from "../actions/index";
 
 const colorOptions = [
     { key: 'none', text: 'None', value: null },
@@ -40,6 +41,9 @@ class ComplexSearch extends Component {
             brand: null
         };
     }
+    updateAdvancedData(changedData) {
+        this.props.updateAdvancedData(changedData);
+    }
 
     render() {
         return (
@@ -51,34 +55,44 @@ class ComplexSearch extends Component {
                             control={Input}
                             label='Form'
                             placeholder='price'
-                            onChange={(e) =>
-                                this.setState({ startPrice: e.target.value })}
+                            onChange={(e, { value }) => {
+                                console.log(value);
+                                this.setState({ startPrice: value });
+                                this.updateAdvancedData({ startPrice: value });
+                            }}
                         />
                         <Form.Field
                             width={2}
                             control={Input}
                             label='To'
                             placeholder='price'
-                            onChange={(e) =>
-                                this.setState({ endPrice: e.target.value })}
+                            onChange={(e, { value }) => {
+                                this.setState({ endPrice: value });
+                                this.updateAdvancedData({ endPrice: value });
+                            }}
                         />
                         <Form.Field
-                            width={4}
+                            width={6}
                             control={Select}
                             label='Color'
                             options={colorOptions}
                             placeholder='Select color'
-                            onChange={(e) =>
-                                this.setState({ color: e.target.value })}
+                            onChange={(e, { value }) => {
+                                console.log(e);
+                                this.setState({ color: value });
+                                this.updateAdvancedData({ color: value });
+                            }}
                         />
                         <Form.Field
-                            width={4}
+                            width={6}
                             control={Select}
                             label='Brand'
                             options={brandOptions}
                             placeholder='Select brand'
-                            onChange={(e) =>
-                                this.setState({ brand: e.target.value })}
+                            onChange={(e, { value }) => {
+                                this.setState({ brand: value });
+                                this.updateAdvancedData({ brand: value });
+                            }}
                         />
                     </Form.Group>
                 </Form>
@@ -86,7 +100,8 @@ class ComplexSearch extends Component {
         );
     }
 }
+const mapStateToProps = ({ advancedMode }) => {
+    return { advancedMode };
+};
 
-
-export default
-    (ComplexSearch);
+export default connect(mapStateToProps, { updateAdvancedData })(ComplexSearch);

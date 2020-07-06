@@ -1,12 +1,12 @@
-import { ADVENCED_MODE } from '../actions';
+import { ADVANCED_MODE } from '../actions';
 
-const advencedMode = (state = {}, action) => {
+const advancedMode = (state = {}, action) => {
 	switch (action.type) {
-		case ADVENCED_MODE:
+		case ADVANCED_MODE:
 			return action.payload;
 		default:
 			return state;
 	}
 };
 
-export default advencedMode;
+export default advancedMode;

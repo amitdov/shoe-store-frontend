@@ -8,11 +8,7 @@ class Board extends React.Component {
 	render() {
 		if (this.props.searchResults.isInSearch) {
 			return (
-				<Segment style={{ position: "absolute", width: "100%", top: 150, bottom: 20 }}>
-					<Dimmer active style={{ minHeight: 200, borderRadius: ".286rem" }}>
-						<Loader>Loading results...</Loader>
-					</Dimmer>
-				</Segment>
+				<Loader active >Loading results...</Loader>
 			);
 		} else if (this.props.searchResults.noResults) {
 			return (

@@ -8,7 +8,7 @@ import {
 } from "semantic-ui-react";
 
 import { connect } from 'react-redux';
-import { sendSearch, changeAdvencedMode } from "../actions/index";
+import { sendSearch, changeAdvancedMode } from "../actions/index";
 import _ from "lodash";
 
 import ComplexSearch from "./ComplexSearch";
@@ -53,9 +53,9 @@ class SearchComponent extends Component {
         };
     }
 
-    RenderAdvencedSearch() {
-        if (!_.isEmpty(this.props.advencedMode) &&
-            this.props.advencedMode.isAdvenced) {
+    RenderAdvancedSearch() {
+        if (!_.isEmpty(this.props.advancedMode) &&
+            this.props.advancedMode.isAdvanced) {
             return <ComplexSearch></ComplexSearch>;
         }
     }
@@ -69,34 +69,32 @@ class SearchComponent extends Component {
     render() {
 
         return (
-            <div>
-                <div className='search-container'>
-                    <Input centered type='text' placeholder='Search...' action className="search-input">
-                        <input onChange={(e) =>
-                            this.setState({ searchQuery: e.target.value })
-                        } />
-                        <Select
-                            compact
-                            options={categoryOptions}
-                            defaultValue={3034}
-                            placeholder='Choose category'
-                            className="category-box"
-                            onChange={(e, { value }) =>
-                                this.setState({ searchCategory: value })
-                            }
-                        />
-                        <Button type='submit' onClick={() =>
-                            this.requestSearch()
+            <div className='search-container'>
+                <Input centered type='text' placeholder='Search...' action className="search-input">
+                    <input onChange={(e) =>
+                        this.setState({ searchQuery: e.target.value })
+                    } />
+                    <Select
+                        compact
+                        options={categoryOptions}
+                        defaultValue={3034}
+                        placeholder='Choose category'
+                        className="category-box"
+                        onChange={(e, { value }) =>
+                            this.setState({ searchCategory: value })
                         }
-                        >Search</Button>
-                    </Input>
-                    <a as='Button'
-                        style={{ margin: "5px" }}
-                        onClick={() => this.openAdvencedMode()}>
-                        Advenced
+                    />
+                    <Button type='submit' onClick={() =>
+                        this.requestSearch()
+                    }
+                    >Search</Button>
+                </Input>
+                <a as='Button'
+                    style={{ margin: "5px" }}
+                    onClick={() => this.openAdvancedMode()}>
+                    Advanced
                 </a>
-                </div>
-                {this.RenderAdvencedSearch()}
+                {this.RenderAdvancedSearch()}
             </div>
         );
     }
@@ -106,14 +104,14 @@ class SearchComponent extends Component {
             this.state.searchCategory
         );
     }
-    openAdvencedMode() {
-        this.props.changeAdvencedMode();
+    openAdvancedMode() {
+        this.props.changeAdvancedMode();
     }
 }
-const mapStateToProps = ({ advencedMode }) => {
-    return { advencedMode };
+const mapStateToProps = ({ advancedMode }) => {
+    return { advancedMode };
 };
 export default connect(
     mapStateToProps,
-    { sendSearch, changeAdvencedMode }
+    { sendSearch, changeAdvancedMode }
 )(SearchComponent);

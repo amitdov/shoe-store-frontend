@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import advencedModeReducer from "./advencedModeReducer";
+import advancedModeReducer from "./advancedModeReducer";
 import searchResultsReducer from "./searchResultsReducer";
 
 export default combineReducers({
-  advencedMode: advencedModeReducer,
+  advancedMode: advancedModeReducer,
   searchResults: searchResultsReducer
 });
