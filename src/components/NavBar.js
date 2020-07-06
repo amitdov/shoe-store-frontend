@@ -8,7 +8,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <navbar>
+      <div>
         <Segment inverted style={{ borderRadius: "0", margin: "0" }}>
           <Menu inverted secondary>
             <Menu.Menu position="left">
@@ -19,7 +19,7 @@ class NavBar extends Component {
             </Menu.Menu>
           </Menu>
         </Segment>
-      </navbar>
+      </div>
     );
   }
 }

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Sidebar, Menu } from "semantic-ui-react";
 import SearchComponent from "./Search";
-// import { fetchAllUsers } from "../actions";
+import Board from "./Board";
 import _ from "lodash";
 class HomeView extends Component {
   state = { activeSystem: undefined };
@@ -12,7 +12,12 @@ class HomeView extends Component {
 
   render() {
     return (
-      <SearchComponent></SearchComponent>
+      <div>
+        <SearchComponent></SearchComponent>
+        <div>
+          <Board></Board>
+        </div>
+      </div>
     );
   }
 

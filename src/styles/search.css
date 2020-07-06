@@ -1,5 +1,6 @@
 .search-container{
-    margin: 50px;
+    margin: 20px auto;
+    width: fit-content;
 }
 
 .ui.input>input{

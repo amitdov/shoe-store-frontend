@@ -1,11 +1,10 @@
 import { combineReducers } from "redux";
 import serverStatusReducer from "./serverStatusReducer";
-import validateQueryStatusReducer from "./validateQueryStatusReducer";
+import searchResultsReducer from "./searchResultsReducer";
 import handleViewReducer from "./handleViewReducer";
 
 export default combineReducers({
   serverStatus: serverStatusReducer,
-  validateQueryStatus: validateQueryStatusReducer,
-
+  searchResults: searchResultsReducer,
   viewData: handleViewReducer,
 });

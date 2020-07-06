@@ -13,19 +13,31 @@ import _ from "lodash";
 import "../styles/search.css";
 
 const categoryOptions = [{
-    key: 'All',
-    text: 'All',
-    value: 'All'
+    key: 'Baby Shoes',
+    text: 'Baby Shoes',
+    value: 147285
 },
 {
-    key: 'org',
-    text: 'This Organization',
-    value: 'org'
+    key: 'Girls\' Shoes',
+    text: 'Girls\' Shoes',
+    value: 57974
+}, {
+    key: 'Boys\' Shoes',
+    text: 'Boys\' Shoes',
+    value: 57929
+}, {
+    key: 'Men\'s Shoes',
+    text: 'Men\'s Shoes',
+    value: 93427
+}, {
+    key: 'Women\'s Shoes',
+    text: 'Women\'s Shoes',
+    value: 3034
 },
 {
-    key: 'site',
-    text: 'Entire Site',
-    value: 'site'
+    key: 'Collectibles',
+    text: 'Collectibles Site',
+    value: 840
 },
 ];
 
@@ -35,27 +47,28 @@ class SearchComponent extends Component {
 
         this.state = {
             searchQuery: '',
-            searchCategory: ''
+            searchCategory: 3034
         };
     }
 
     clearState = () => {
         this.setState({
             searchQuery: '',
-            searchCategory: ''
+            searchCategory: 3034
         })
     }
     render() {
 
         return (
-            <div class='search-container'>
-                <Input type='text' placeholder='Search...' action className="search-input">
+            <div className='search-container'>
+                <Input centered type='text' placeholder='Search...' action className="search-input">
                     <input onChange={(e) =>
                         this.setState({ searchQuery: e.target.value })
                     } />
                     <Select
                         compact
                         options={categoryOptions}
+                        defaultValue={3034}
                         placeholder='Choose category'
                         className="category-box"
                         onChange={(e, { value }) =>
@@ -70,14 +83,13 @@ class SearchComponent extends Component {
         );
     }
     RequestSearch() {
-        if (!_.isEmpty(this.state.searchQuery) ||
-            !_.isEmpty(this.state.searchCategory)) {
-            this.props.sendSearch(
-                this.state.searchQuery,
-                this.state.searchCategory
-            );
-        }
+        this.props.sendSearch(
+            this.state.searchQuery,
+            this.state.searchCategory
+        );
     }
+}
+const categories = {
 }
 export default connect(
     null,
