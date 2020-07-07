@@ -1,7 +1,5 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import "../styles/navbar-style.css";
 import { Segment, Menu, Icon } from "semantic-ui-react";
 
 class NavBar extends Component {
@@ -24,12 +22,4 @@ class NavBar extends Component {
   }
 }
 
-// const mapStateToProps = ({ }) => {
-//   return {};
-// };
-
-export default
-  // connect(mapStateToProps, {
-
-  // })
-  (NavBar);
+export default NavBar;

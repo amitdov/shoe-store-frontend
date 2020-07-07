@@ -1,6 +1,5 @@
 // External modules
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
 // Inner modules
 import "../styles/app.css";
@@ -25,13 +24,6 @@ class App extends Component {
   }
 }
 
-// const mapStateToProps = ({ }) => {
-//   return {
 
-//   };
-// };
 
-export default
-  // connect(mapStateToProps, {
-  // })
-  (App);
+export default App;

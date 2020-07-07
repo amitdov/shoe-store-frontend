@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Form, Input, Select, Button, Segment } from "semantic-ui-react";
+import { Form, Input, Select, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { updateAdvancedData } from "../actions/index";
 

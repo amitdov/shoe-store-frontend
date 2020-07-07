@@ -1,51 +1,15 @@
 import React, { Component } from 'react';
-import { Card, Loader, Dimmer, Segment, Icon, Button } from "semantic-ui-react";
+import { Card, Loader, Icon, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import ShoesCard from './ShoesCard';
 
 import { getNextPage } from "../actions/index";
 import _ from "lodash";
-class Board extends React.Component {
+const cardColors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey'];
 
-	render() {
-		if (this.props.searchResults.isInSearch) {
-			return (
-				<Loader active >Loading results...</Loader>
-			);
-		} else if (this.props.searchResults.noResults) {
-			return (
-				<div style={{ textAlign: "center" }}>
-					Coulden't find any results that matches the search :(
-					{/* <Icon name='frown outline' /> */}
-				</div>
-			)
-
-		} else {
-			return (
-				<div>
-					<Card.Group centered stackable>
-						{this.renderCards()}
-					</Card.Group>
-					{!_.isEmpty(this.props.searchResults.nextPage) &&
-						<div style={{
-							textAlign: "center",
-							margin: 10
-						}}>
-							<Button onClick={() =>
-								this.props.getNextPage()
-							} > Next
-						</Button>
-						</div>
-					}
-				</div>
-
-			);
-		}
-
-	}
+class Board extends Component {
 
 	renderCards() {
-
 		if (!_.isEmpty(this.props.searchResults.shoesList)) {
 			return this.props.searchResults.shoesList.map(
 				(
@@ -64,8 +28,45 @@ class Board extends React.Component {
 			color={color}
 		/>;
 	}
+
+	render() {
+		if (this.props.searchResults.isInSearch) {
+			return (
+				<Loader active >Loading results...</Loader>
+			);
+		} else if (this.props.searchResults.noResults) {
+			return (
+				<div style={{ textAlign: "center" }}>
+					Coulden't find any results that matches the search :(
+				</div>
+			)
+
+		} else {
+			return (
+				<div>
+					<Card.Group centered stackable>
+						{this.renderCards()}
+					</Card.Group>
+					{!_.isEmpty(this.props.searchResults.nextPage) &&
+						<div style={{
+							textAlign: "center",
+							margin: 10
+						}}>
+							<Button onClick={() =>
+								this.props.getNextPage()
+
+							} > Next
+							<Icon name="arrow right" />
+							</Button>
+						</div>
+					}
+				</div>
+
+			);
+		}
+
+	}
 }
-const cardColors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey'];
 const mapStateToProps = ({ searchResults }) => {
 	return { searchResults };
 };

@@ -38,7 +38,7 @@ const categoryOptions = [{
 },
 {
     key: 'Collectibles',
-    text: 'Collectibles Site',
+    text: 'Collectibles',
     value: 840
 },
 ];
@@ -52,6 +52,15 @@ class SearchComponent extends Component {
             searchCategory: 3034
         };
     }
+    requestSearch() {
+        this.props.sendSearch(
+            this.state.searchQuery,
+            this.state.searchCategory
+        );
+    }
+    openAdvancedMode() {
+        this.props.changeAdvancedMode();
+    }
 
     RenderAdvancedSearch() {
         if (!_.isEmpty(this.props.advancedMode) &&
@@ -60,12 +69,6 @@ class SearchComponent extends Component {
         }
     }
 
-    clearState = () => {
-        this.setState({
-            searchQuery: '',
-            searchCategory: 3034
-        })
-    }
     render() {
 
         return (
@@ -97,15 +100,6 @@ class SearchComponent extends Component {
                 {this.RenderAdvancedSearch()}
             </div>
         );
-    }
-    requestSearch() {
-        this.props.sendSearch(
-            this.state.searchQuery,
-            this.state.searchCategory
-        );
-    }
-    openAdvancedMode() {
-        this.props.changeAdvancedMode();
     }
 }
 const mapStateToProps = ({ advancedMode }) => {

@@ -6,8 +6,6 @@ import _ from "lodash";
 import { connect } from "react-redux";
 class HomeView extends Component {
 
-
-
   render() {
     return (
       <div>
@@ -21,8 +19,4 @@ class HomeView extends Component {
 
 }
 
-
-
-export default
-
-  (HomeView);
+export default HomeView;
