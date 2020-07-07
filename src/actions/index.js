@@ -129,7 +129,7 @@ const returnObjectOrNull = (value) => {
     }
 }
 
-function BuildSearchQuery(query, queryText, category) {
+const BuildSearchQuery = (query, queryText, category) => {
     query = {
         query: "query{\n" +
             "searchShoes(queryText:" + returnObjectOrNull(queryText) + "" +
@@ -146,7 +146,7 @@ function BuildSearchQuery(query, queryText, category) {
     return query;
 }
 
-function BuildComplexSearchQuery(query, queryText, category, getState) {
+const BuildComplexSearchQuery = (query, queryText, category, getState) => {
     query = {
         query: "query{\n" +
             "complexSearch(queryText:" + returnObjectOrNull(queryText) +
@@ -167,7 +167,7 @@ function BuildComplexSearchQuery(query, queryText, category, getState) {
     return query;
 }
 
-function ClearSearchState(dispatch) {
+const ClearSearchState = (dispatch) => {
     dispatch({
         type: SEARCH_RESULTS,
         payload: {
